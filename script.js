@@ -118,24 +118,39 @@ window.addEventListener('load', () => {
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.navbar');
 const navLinks = document.querySelectorAll('.nav-links a');
+const overlay = document.querySelector('.nav-overlay');
 
-navToggle.addEventListener('click', () => {
+function toggleMenu() {
     nav.classList.toggle('nav-open');
     document.body.classList.toggle('no-scroll');
+}
+
+// Toggle menu when clicking the hamburger button
+navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
 });
 
-// Close mobile menu when clicking on a link
+// Close menu when clicking a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        nav.classList.remove('nav-open');
-        document.body.classList.remove('no-scroll');
+        toggleMenu();
     });
 });
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && nav.classList.contains('nav-open')) {
-        nav.classList.remove('nav-open');
-        document.body.classList.remove('no-scroll');
+// Close menu when clicking the overlay
+overlay.addEventListener('click', () => {
+    toggleMenu();
+});
+
+// Close menu when pressing Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('nav-open')) {
+        toggleMenu();
     }
+});
+
+// Prevent clicks inside the menu from closing it
+document.querySelector('.nav-links').addEventListener('click', (e) => {
+    e.stopPropagation();
 }); 
