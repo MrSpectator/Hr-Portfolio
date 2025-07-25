@@ -12,9 +12,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(44, 62, 80, 0.95)';
+        navbar.style.background = 'rgba(10, 25, 47, 0.95)'; // Slightly transparent navy blue
     } else {
-        navbar.style.background = 'var(--background-dark)';
+        navbar.style.background = 'var(--nav-footer-color)'; // Solid navy blue
     }
 });
 
@@ -40,22 +40,50 @@ skillLevels.forEach(skill => {
 
 window.addEventListener('scroll', animateSkills);
 
-// Form submission handling
-const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+// Remove the form submission handling code and add flower button animation
+const flowerButton = document.getElementById('flower-button');
+const flowerContainer = document.getElementById('flower-container');
+const flowerEmojis = ['🌸', '🌺', '🌹', '🌷', '🌼', '🌻', '💐', '🏵️'];
+
+function createFlower(e) {
+    const buttonRect = flowerButton.getBoundingClientRect();
+    const startX = buttonRect.left + buttonRect.width / 2;
+    const startY = buttonRect.top + buttonRect.height / 2;
     
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Here you would typically send the form data to a server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I will get back to you soon.');
-    contactForm.reset();
+    // Create multiple flowers
+    for (let i = 0; i < 12; i++) {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+        
+        // Calculate random end positions
+        const angle = (i / 12) * 2 * Math.PI;
+        const distance = 100 + Math.random() * 100;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        flower.style.setProperty('--tx', `${tx}px`);
+        flower.style.setProperty('--ty', `${ty}px`);
+        
+        // Set initial position
+        flower.style.left = `${startX}px`;
+        flower.style.top = `${startY}px`;
+        
+        flowerContainer.appendChild(flower);
+        
+        // Remove the flower element after animation
+        flower.addEventListener('animationend', () => {
+            flower.remove();
+        });
+    }
+}
+
+flowerButton.addEventListener('click', createFlower);
+
+// Add hover effect to make the button more interactive
+flowerButton.addEventListener('mouseover', () => {
+    const icon = flowerButton.querySelector('.flower-icon');
+    icon.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
 });
 
 // Intersection Observer for fade-in animations
