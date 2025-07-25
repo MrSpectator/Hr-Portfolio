@@ -115,42 +115,23 @@ window.addEventListener('load', () => {
 }); 
 
 // Mobile Menu Toggle
-const navToggle = document.querySelector('.nav-toggle');
-const nav = document.querySelector('.navbar');
-const navLinks = document.querySelectorAll('.nav-links a');
-const overlay = document.querySelector('.nav-overlay');
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-function toggleMenu() {
-    nav.classList.toggle('nav-open');
-    document.body.classList.toggle('no-scroll');
-}
-
-// Toggle menu when clicking the hamburger button
-navToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-});
-
-// Close menu when clicking a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        toggleMenu();
+    // Toggle menu
+    navToggle.addEventListener('click', () => {
+        navbar.classList.toggle('nav-open');
+        document.body.classList.toggle('no-scroll');
+        console.log('Menu toggled'); // Debug log
     });
-});
 
-// Close menu when clicking the overlay
-overlay.addEventListener('click', () => {
-    toggleMenu();
-});
-
-// Close menu when pressing Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('nav-open')) {
-        toggleMenu();
-    }
-});
-
-// Prevent clicks inside the menu from closing it
-document.querySelector('.nav-links').addEventListener('click', (e) => {
-    e.stopPropagation();
+    // Close menu when clicking links
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navbar.classList.remove('nav-open');
+            document.body.classList.remove('no-scroll');
+        });
+    });
 }); 

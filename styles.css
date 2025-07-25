@@ -64,28 +64,26 @@ body {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    position: relative;
     z-index: 1001;
 }
 
 .hamburger {
     display: block;
     position: relative;
-    width: 2rem;
+    width: 24px;
     height: 2px;
     background: var(--text-light);
-    transition: var(--transition);
+    transition: all 0.3s ease-in-out;
 }
 
 .hamburger::before,
 .hamburger::after {
     content: '';
     position: absolute;
-    left: 0;
-    width: 100%;
+    width: 24px;
     height: 2px;
     background: var(--text-light);
-    transition: var(--transition);
+    transition: all 0.3s ease-in-out;
 }
 
 .hamburger::before {
@@ -98,17 +96,16 @@ body {
 
 /* Hamburger Animation */
 .nav-open .hamburger {
-    transform: rotate(45deg);
     background: transparent;
 }
 
 .nav-open .hamburger::before {
-    transform: rotate(0) translateY(0);
+    transform: rotate(45deg);
     top: 0;
 }
 
 .nav-open .hamburger::after {
-    transform: rotate(-90deg) translateX(0);
+    transform: rotate(-45deg);
     bottom: 0;
 }
 
