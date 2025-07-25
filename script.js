@@ -113,25 +113,3 @@ document.querySelectorAll('section').forEach(section => {
 window.addEventListener('load', () => {
     animateSkills();
 }); 
-
-// Mobile Menu Toggle
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navbar = document.querySelector('.navbar');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    // Toggle menu
-    navToggle.addEventListener('click', () => {
-        navbar.classList.toggle('nav-open');
-        document.body.classList.toggle('no-scroll');
-        console.log('Menu toggled'); // Debug log
-    });
-
-    // Close menu when clicking links
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navbar.classList.remove('nav-open');
-            document.body.classList.remove('no-scroll');
-        });
-    });
-}); 

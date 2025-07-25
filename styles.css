@@ -47,7 +47,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    position: relative;
 }
 
 .logo {
@@ -704,68 +703,17 @@ body {
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
+    .nav-links {
+        display: none;  /* Hide navigation links on mobile */
     }
 
     .logo {
         margin: 0 auto;  /* Center the logo */
+        font-size: 1.2rem;  /* Slightly smaller font size on mobile */
     }
 
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;  /* Changed from right to left */
-        width: 100%;
-        height: 100vh;
-        background-color: var(--nav-footer-color);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        transition: 0.3s ease-in-out;
-        opacity: 0;
-        visibility: hidden;
-        z-index: 1000;
-    }
-
-    .nav-open .nav-links {
-        left: 0;  /* Changed from right to left */
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Add overlay for menu background */
-    .nav-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.3s ease-in-out;
-        z-index: 999;
-    }
-
-    .nav-open .nav-overlay {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Prevent body scroll when menu is open */
-    body.no-scroll {
-        overflow: hidden;
-    }
-
-    .nav-links a {
-        font-size: 1.2rem;
+    .navbar {
+        padding: 1rem 0;  /* Slightly less padding on mobile */
     }
 
     /* Hero Section Mobile Adjustments */
